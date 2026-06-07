@@ -52,6 +52,12 @@ The uncertainty term is a symmetric Gaussian KL divergence between decoded
 predictive distributions for source/target measurements sharing the same DMD
 pattern ID.
 
+![Architecture of the ULDA framework](assets/ulda_architecture.png)
+
+*Figure 2. ULDA architecture. A lightweight residual latent aligner adapts
+target-domain representations while the uncertainty-aware reconstruction
+backbone remains frozen.*
+
 ## Included Code
 
 | Component | Source | Training entry point |
@@ -152,9 +158,34 @@ Static reference-state results reported in the manuscript:
 | RTMNet | Physics-informed | 2.15 | 20.34 | 86.24 |
 | UVAE | Probabilistic VAE | 2.65 | **26.11** | **95.09** |
 
-The SI data-efficiency experiment reports mean SSIM increasing from 0.650
-before adaptation to 0.738 after one ULDA epoch and 0.862 after 50 epochs,
-averaged over target bending states 1-10.
+*Table 1. Performance of baseline models at the static reference state, as
+reported in the main manuscript.*
+
+![Static-reference reconstruction comparison](assets/static_reconstruction_comparison.png)
+
+*Figure 3. Qualitative reconstruction comparison at the static reference
+state. UVAE preserves digit structure while providing cleaner backgrounds than
+the deterministic baselines.*
+
+![Reconstruction comparison before and after ULDA](assets/ulda_reconstruction_comparison.png)
+
+*Figure 9. Qualitative comparison across bending configurations. Static UVAE
+reconstructions and uncertainty maps degrade under domain shift, whereas ULDA
+restores both structural fidelity and localized predictive uncertainty.*
+
+Data-efficiency results averaged over target bending states 1-10:
+
+| Adaptation stage | MSE | PSNR (dB) | SSIM | Accuracy (%) |
+|---|---:|---:|---:|---:|
+| Static UVAE before adaptation | 0.0917 | 10.66 | 0.650 | 13.30 |
+| ULDA epoch 1 | 0.0501 | 13.32 | 0.738 | 96.56 |
+| ULDA epoch 5 | 0.0393 | 14.53 | 0.776 | 99.02 |
+| ULDA epoch 10 | 0.0320 | 15.49 | 0.808 | 99.74 |
+| ULDA epoch 50 | **0.0188** | **17.82** | **0.862** | **100.00** |
+
+*Table S5. ULDA data-efficiency analysis from the Supporting Information.
+Target-domain ground-truth images are used only for offline evaluation, not
+for adaptation.*
 
 ## Reproducibility Notes
 
