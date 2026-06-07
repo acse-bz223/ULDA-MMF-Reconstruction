@@ -66,7 +66,7 @@ backbone remains frozen.*
 | ULDA aligner and losses | `src/ulda_mmf/models/ulda.py`, `src/ulda_mmf/losses.py` | `scripts/train_ulda.py` |
 | Continual ULDA reproduction | self-contained server implementation | `scripts/train_ulda_continual.py` |
 | ULDA ablations | self-contained server implementation | `scripts/train_ulda_ablation.py` |
-| ULDA data-efficiency study | self-contained server implementation | `scripts/train_ulda_data_efficiency.py` |
+| ULDA data-efficiency study | self-contained cross-bending server implementation | `scripts/train_ulda_data_efficiency_server.py` |
 | MLP baseline | `src/ulda_mmf/models/baselines.py` | `scripts/train_mlp.py` |
 | U-Net baseline | `src/ulda_mmf/models/baselines.py` | `scripts/train_unet.py` |
 | RTMNet baseline | `src/ulda_mmf/models/rtmnet.py` | `scripts/train_rtmnet.py` |
@@ -136,7 +136,13 @@ Reproduce the Supporting Information studies:
 
 ```bash
 python scripts/train_ulda_ablation.py --help
-python scripts/train_ulda_data_efficiency.py --help
+python scripts/train_ulda_data_efficiency_server.py \
+  --data_root data/historical \
+  --vae_ckpt outputs/uvae/best.pt \
+  --target_domains 1-10 \
+  --epoch_checkpoints 0,1,5,10,20,50 \
+  --fractions 0.01,0.05,0.10,0.25,0.50,1.00 \
+  --experiments epoch,data --amp
 ```
 
 Train static baselines:
@@ -173,24 +179,24 @@ the deterministic baselines.*
 reconstructions and uncertainty maps degrade under domain shift, whereas ULDA
 restores both structural fidelity and localized predictive uncertainty.*
 
-Data-efficiency results averaged over target bending states 1-10:
+Data-efficiency values are intentionally not reproduced here until they have
+been regenerated with the held-out evaluation protocol implemented in
+`scripts/train_ulda_data_efficiency_server.py`. The script independently
+measures the adaptation-epoch trajectory and the effect of target training-set
+size for every bending state, then writes publication-ready Markdown and CSV
+tables. Target-domain ground-truth images are used only for held-out offline
+evaluation, not for adaptation.
 
-| Adaptation stage | MSE | PSNR (dB) | SSIM | Accuracy (%) |
-|---|---:|---:|---:|---:|
-| Static UVAE before adaptation | 0.0917 | 10.66 | 0.650 | 13.30 |
-| ULDA epoch 1 | 0.0501 | 13.32 | 0.738 | 96.56 |
-| ULDA epoch 5 | 0.0393 | 14.53 | 0.776 | 99.02 |
-| ULDA epoch 10 | 0.0320 | 15.49 | 0.808 | 99.74 |
-| ULDA epoch 50 | **0.0188** | **17.82** | **0.862** | **100.00** |
-
-*Table S5. ULDA data-efficiency analysis from the Supporting Information.
-Target-domain ground-truth images are used only for offline evaluation, not
-for adaptation.*
+The main outputs are `results_tables.md`, `epoch_trajectory_mean.csv`,
+`epoch_trajectory_by_bending.csv`, `data_fraction_mean.csv`, and
+`data_fraction_by_bending.csv`.
 
 ## Reproducibility Notes
 
 - Fixed random seed: 42.
 - Reference-state split: 80% training, 10% validation, 10% test.
+- Data-efficiency experiments use fixed stratified 80% target-training and 20%
+  held-out target-test splits.
 - Default image resolution: 256 x 256.
 - Default ULDA latent dimension: 512.
 - ULDA updates the aligner and optional class bias while keeping UVAE frozen.
