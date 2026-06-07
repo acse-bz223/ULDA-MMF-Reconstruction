@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the accompanying manuscript."
+title: "ULDA-MMF-Reconstruction"
+type: software
+version: 0.1.0
+date-released: 2026-06-07
+authors:
+  - family-names: Zhang
+    given-names: Bo
+  - family-names: An
+    given-names: Donglai
+  - family-names: Wang
+    given-names: Yufei
+  - family-names: Su
+    given-names: Lei
+  - family-names: Sun
+    given-names: Jiawei
+  - family-names: Fan
+    given-names: Pengfei
+preferred-citation:
+  type: article
+  title: "Robust Image Reconstruction through Uncharacterized Multimode Fibers via Uncertainty-Consistent Latent Domain Adaptation"
+  authors:
+    - family-names: Zhang
+      given-names: Bo
+    - family-names: An
+      given-names: Donglai
+    - family-names: Wang
+      given-names: Yufei
+    - family-names: Su
+      given-names: Lei
+    - family-names: Sun
+      given-names: Jiawei
+    - family-names: Fan
+      given-names: Pengfei
+  year: 2026
+  notes: "Manuscript prepared for Laser & Photonics Reviews"

@@ -1,0 +1,32 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+.tools/
+
+# Local datasets, checkpoints, and experiment outputs are intentionally excluded.
+data/
+datasets/
+checkpoints/
+outputs/
+runs/
+wandb/
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.mat
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Editor and operating-system files.
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
