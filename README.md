@@ -2,9 +2,15 @@
 
 Official research code for **"Robust Image Reconstruction through
 Uncharacterized Multimode Fibers via Uncertainty-Consistent Latent Domain
-Adaptation"**, prepared for *Laser & Photonics Reviews*.
+Adaptation"**.
 
 Bo Zhang, Donglai An, Yufei Wang, Lei Su, Jiawei Sun, and Pengfei Fan
+
+![Conceptual overview of uncertainty-consistent latent domain adaptation](assets/figure_1.png)
+
+*Figure 1. Conceptual overview of the multimode-fiber imaging system, the
+physical domain shift induced by fiber bending, and uncertainty-consistent
+latent domain adaptation.*
 
 ## Overview
 
@@ -19,13 +25,6 @@ and uncertainty consistency between matched optical inputs.
 Target-domain pixel-wise ground-truth images are **not used for ULDA
 adaptation**. The repository intentionally excludes all experimental datasets
 and trained weights.
-
-![SSIM across bending configurations](assets/ssim_across_bending.png)
-
-*Reconstruction SSIM across the calibrated state and ten macroscopic bending
-configurations. ULDA stabilizes structural fidelity under physical domain
-shift; this project-generated plot corresponds to the comparative analysis in
-the main manuscript.*
 
 ## Method
 
@@ -52,12 +51,6 @@ L_ULDA = lambda_p L_prototype
 The uncertainty term is a symmetric Gaussian KL divergence between decoded
 predictive distributions for source/target measurements sharing the same DMD
 pattern ID.
-
-![Latent alignment metrics](assets/latent_alignment_metrics.png)
-
-*Latent geometry before and after adaptation. Higher silhouette and
-Calinski-Harabasz scores, together with lower Davies-Bouldin and intra/inter
-ratios, indicate recovery of a compact semantic manifold.*
 
 ## Included Code
 
@@ -163,13 +156,6 @@ The SI data-efficiency experiment reports mean SSIM increasing from 0.650
 before adaptation to 0.738 after one ULDA epoch and 0.862 after 50 epochs,
 averaged over target bending states 1-10.
 
-| Before ULDA | After ULDA |
-|---|---|
-| ![Before ULDA](assets/reconstruction_before_ulda.png) | ![After ULDA](assets/reconstruction_after_ulda.png) |
-
-*Extended reconstructions across bending configurations, corresponding to the
-qualitative before/after analyses in Supporting Information Figures S2-S3.*
-
 ## Reproducibility Notes
 
 - Fixed random seed: 42.
@@ -191,8 +177,7 @@ documented in [docs/CODE_REVIEW.md](docs/CODE_REVIEW.md).
              Fibers via Uncertainty-Consistent Latent Domain Adaptation},
   author  = {Zhang, Bo and An, Donglai and Wang, Yufei and Su, Lei and
              Sun, Jiawei and Fan, Pengfei},
-  year    = {2026},
-  note    = {Manuscript prepared for Laser \& Photonics Reviews}
+  year    = {2026}
 }
 ```
 
