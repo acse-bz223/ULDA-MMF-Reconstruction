@@ -208,6 +208,14 @@ the deterministic baselines.*
 
 ## ULDA Adaptation Results
 
+![ULDA latent recasting dynamics at bending state b = 10](assets/ulda_recasting_dynamics_b10.gif)
+
+*Figure 8. Dynamic ULDA adaptation at bending state \(b=10\). The left panels
+track fixed digit samples from the initial UVAE prediction to the adapted
+reconstruction, together with uncertainty and error maps. The right panel
+shows class-wise target latent trajectories recast toward the source-domain
+anchors.*
+
 ![Reconstruction comparison before and after ULDA](assets/ulda_reconstruction_comparison.png)
 
 *Figure 9. Qualitative restoration under bending. Static UVAE reconstructions
