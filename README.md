@@ -7,7 +7,7 @@ Code accompanying the manuscript:
 Bo Zhang, Donglai An, Yufei Wang, Lei Su, Jiawei Sun, and Pengfei Fan
 
 <p align="center">
-  <img src="assets/figure_1.png" width="92%" alt="Conceptual overview of uncertainty-consistent latent recasting">
+  <img src="assets/figure_1_ulda_overview_20260612.png" width="92%" alt="Conceptual overview of uncertainty-consistent latent recasting">
 </p>
 
 **Figure 1. Experimental concept and uncertainty-consistent latent recasting.** Mechanical bending changes the multimode-fiber (MMF) transmission state, transforming calibrated source-domain speckles into target-domain measurements. In the learned inverse model, this physical perturbation appears as a displaced and mixed latent representation. ULDA keeps the uncertainty-aware UVAE backbone fixed and aligns target latents toward the calibrated source manifold using labels, DMD pattern IDs, and uncertainty consistency, without target-domain pixel-wise images.
@@ -71,9 +71,9 @@ The uncertainty-consistency term is implemented as a symmetric Gaussian KL diver
 ### Quantitative reconstruction performance
 
 <p align="center">
-  <img src="assets/figure_4_mse.png" width="32%" alt="MSE under bending">
-  <img src="assets/figure_4_psnr.png" width="32%" alt="PSNR under bending">
-  <img src="assets/figure_4_ssim.png" width="32%" alt="SSIM under bending">
+  <img src="assets/figure_4_mse_bending_20260612.png" width="32%" alt="MSE under bending">
+  <img src="assets/figure_4_psnr_bending_20260612.png" width="32%" alt="PSNR under bending">
+  <img src="assets/figure_4_ssim_bending_20260612.png" width="32%" alt="SSIM under bending">
 </p>
 
 **Figure 4. Reconstruction metrics under fiber bending.** MSE, PSNR, and SSIM are shown as functions of bending index for static MLP, U-Net, RTMNet, UVAE, and ULDA. Static models trained only at the calibrated state degrade under target-domain bending. ULDA stabilizes reconstruction fidelity by adapting the target latent representation while keeping the UVAE backbone fixed.
